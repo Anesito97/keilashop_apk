@@ -53,9 +53,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
             super.onReceivedError(view, request, error);
+
             if (error.getErrorCode() == ERROR_HOST_LOOKUP) {
                 // Muestra la vista personalizada de error solo en caso de error de red
                 errorView.setVisibility(View.VISIBLE);
+            } else {
+                // Oculta el mensaje de error predeterminado en otros casos
+                view.setVisibility(View.INVISIBLE); // O puedes usar View.GONE según tus preferencias
             }
         }
     }

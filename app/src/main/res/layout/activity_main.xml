@@ -22,20 +22,29 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/icono_error" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Revise su conexión a internet."
-            android:textSize="18sp" />
+            android:textSize="24sp"
+            android:typeface="serif"
+            android:textStyle="bold"
+            />
+
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Reintentar"
             android:id="@+id/retry_button"
-            android:onClick="retryButtonClick" />
+            android:onClick="retryButtonClick"
+            android:textSize="20sp"
+            android:background="@color/colorButtonNormal"
+            android:textColor="#fff"
+            />
+
 
         <!-- Puedes agregar más elementos, como un botón para recargar la página, según tus necesidades -->
 
