@@ -59,6 +59,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+    public void retryButtonClick(View view) {
+        // Este método se llama cuando se hace clic en el botón "Reintentar"
+        // Puedes implementar aquí la lógica para recargar la página
+        webView.reload(); // Esto recargará la página web en el WebView
+    }
+
 
     // Esto es para hacer que la aplicación se muestre a pantalla completa
     @Override

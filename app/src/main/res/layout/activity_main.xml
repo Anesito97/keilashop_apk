@@ -30,6 +30,13 @@
             android:text="Revise su conexión a internet."
             android:textSize="18sp" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reintentar"
+            android:id="@+id/retry_button"
+            android:onClick="retryButtonClick" />
+
         <!-- Puedes agregar más elementos, como un botón para recargar la página, según tus necesidades -->
 
     </LinearLayout>
