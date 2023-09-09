@@ -1,22 +1,25 @@
 package com.foodmenu.keilashop;
-
+import android.graphics.Bitmap;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     private WebView webView;
+    private View errorView; // Agrega la vista personalizada de error
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         webView = findViewById(R.id.webview);
         WebSettings webSettings = webView.getSettings();
@@ -27,13 +30,34 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setLoadsImagesAutomatically(true);
         webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
 
-        webView.setWebViewClient(new WebViewClient());
+        webView.setWebViewClient(new CustomWebViewClient());
+
+        // Agrega la vista personalizada de error
+        errorView = findViewById(R.id.error_view);
 
         // Esto es necesario para que los vídeos y otros elementos multimedia se reproduzcan correctamente
         webView.setWebChromeClient(new WebChromeClient());
 
         // Cargar la URL
         webView.loadUrl("https://keilashop.com");
+    }
+
+    private class CustomWebViewClient extends WebViewClient {
+        @Override
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            super.onPageStarted(view, url, favicon);
+            // Oculta la vista personalizada de error al cargar la página
+            errorView.setVisibility(View.GONE);
+        }
+
+        @Override
+        public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+            super.onReceivedError(view, request, error);
+            if (error.getErrorCode() == ERROR_HOST_LOOKUP) {
+                // Muestra la vista personalizada de error solo en caso de error de red
+                errorView.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     // Esto es para hacer que la aplicación se muestre a pantalla completa
